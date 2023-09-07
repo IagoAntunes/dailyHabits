@@ -10,19 +10,19 @@ part 'home_controller.store.g.dart';
 class HomeController = _HomeController with _$HomeController;
 
 abstract class _HomeController with Store {
-  Map<IUiState, IHabit> listHabit = {
-    WaterHabitState(): WaterHabitModel(),
-    RunHabitState(): RunHabitModel(),
-    Other2HabitState(): RunHabitModel(),
-  };
+  IHabit waterHabitModel = WaterHabitModel();
+  IHabit runHabitModel = RunHabitModel();
+  WaterHabitState waterHabitState = WaterHabitState();
+  RunHabitState runHabitState = RunHabitState();
 
   int indexListHabit = 0;
+  bool alreadyEnter = false;
 
   @observable
   IUiState currentState = WaterHabitState();
 
   @observable
-  IHabit currentHabit = WaterHabitModel();
+  IHabit? currentHabit;
 
   @observable
   double auxValueHabit = 0;
@@ -30,26 +30,14 @@ abstract class _HomeController with Store {
   @action
   changeHabit(bool isRight) {
     auxValueHabit = 0;
-    if (isRight) {
-      if (indexListHabit + 1 < listHabit.length) {
-        indexListHabit++;
-        currentState = listHabit.keys.toList()[indexListHabit];
-        currentHabit = listHabit.values.toList()[indexListHabit];
-      } else {
-        indexListHabit = 0;
-        currentState = listHabit.keys.toList()[indexListHabit];
-        currentHabit = listHabit.values.toList()[indexListHabit];
-      }
+    if (indexListHabit == 0) {
+      currentState = runHabitState;
+      currentHabit = runHabitModel;
+      indexListHabit = 1;
     } else {
-      if (indexListHabit - 1 >= 0) {
-        indexListHabit--;
-        currentState = listHabit.keys.toList()[indexListHabit];
-        currentHabit = listHabit.values.toList()[indexListHabit];
-      } else {
-        indexListHabit = listHabit.length - 1;
-        currentState = listHabit.keys.toList()[indexListHabit];
-        currentHabit = listHabit.values.toList()[indexListHabit];
-      }
+      indexListHabit = 0;
+      currentState = waterHabitState;
+      currentHabit = waterHabitModel;
     }
   }
 

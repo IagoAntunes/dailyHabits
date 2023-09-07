@@ -15,6 +15,7 @@ class WaterHabitModel extends IHabit {
           habitValue: 0,
           divisors: 30,
           measurements: 'ml',
+          id: 'water',
         );
 
   @override

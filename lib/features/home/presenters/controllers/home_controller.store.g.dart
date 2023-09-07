@@ -29,15 +29,31 @@ mixin _$HomeController on _HomeController, Store {
       Atom(name: '_HomeController.currentHabit', context: context);
 
   @override
-  IHabit get currentHabit {
+  IHabit? get currentHabit {
     _$currentHabitAtom.reportRead();
     return super.currentHabit;
   }
 
   @override
-  set currentHabit(IHabit value) {
+  set currentHabit(IHabit? value) {
     _$currentHabitAtom.reportWrite(value, super.currentHabit, () {
       super.currentHabit = value;
+    });
+  }
+
+  late final _$auxValueHabitAtom =
+      Atom(name: '_HomeController.auxValueHabit', context: context);
+
+  @override
+  double get auxValueHabit {
+    _$auxValueHabitAtom.reportRead();
+    return super.auxValueHabit;
+  }
+
+  @override
+  set auxValueHabit(double value) {
+    _$auxValueHabitAtom.reportWrite(value, super.auxValueHabit, () {
+      super.auxValueHabit = value;
     });
   }
 
@@ -56,10 +72,22 @@ mixin _$HomeController on _HomeController, Store {
   }
 
   @override
+  dynamic changeHabitValue(double value) {
+    final _$actionInfo = _$_HomeControllerActionController.startAction(
+        name: '_HomeController.changeHabitValue');
+    try {
+      return super.changeHabitValue(value);
+    } finally {
+      _$_HomeControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentState: ${currentState},
-currentHabit: ${currentHabit}
+currentHabit: ${currentHabit},
+auxValueHabit: ${auxValueHabit}
     ''';
   }
 }

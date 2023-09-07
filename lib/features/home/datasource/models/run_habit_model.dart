@@ -15,6 +15,7 @@ class RunHabitModel extends IHabit {
           habitValue: 0,
           divisors: 20,
           measurements: 'km',
+          id: 'run',
         );
 
   @override

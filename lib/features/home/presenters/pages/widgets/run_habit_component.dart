@@ -37,7 +37,7 @@ class RunHabitComponent extends StatelessWidget {
             width: MediaQuery.sizeOf(context).width * 0.7,
             height: 350,
             decoration: BoxDecoration(
-              color: controller.currentHabit.primaryColor,
+              color: controller.currentHabit!.primaryColor,
               borderRadius: const BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -46,7 +46,7 @@ class RunHabitComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${((controller.currentHabit.habitValue * 100) / controller.currentHabit.goalValue) > 0 ? ((controller.currentHabit.habitValue * 100) / controller.currentHabit.goalValue).ceil() : 0}%",
+                  "${((controller.currentHabit!.habitValue * 100) / controller.currentHabit!.goalValue) > 0 ? ((controller.currentHabit!.habitValue * 100) / controller.currentHabit!.goalValue).ceil() : 0}%",
                   style: AppTypography.card(),
                 ),
                 const Center(
@@ -61,11 +61,11 @@ class RunHabitComponent extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          controller.currentHabit.description,
+                          controller.currentHabit!.description,
                           style: AppTypography.card(),
                         ),
                         Text(
-                          "Meta: ${controller.currentHabit.goalValue.ceil()} ${controller.currentHabit.measurements}",
+                          "Meta: ${controller.currentHabit!.goalValue.ceil()} ${controller.currentHabit!.measurements}",
                           style: AppTypography.title(color: Colors.black),
                         ),
                       ],
@@ -77,7 +77,7 @@ class RunHabitComponent extends StatelessWidget {
                           style: AppTypography.card(),
                         ),
                         Text(
-                          "${controller.currentHabit.habitValue} ${controller.currentHabit.measurements}",
+                          "${controller.currentHabit!.habitValue} ${controller.currentHabit!.measurements}",
                           style: AppTypography.title(color: Colors.black),
                         ),
                       ],

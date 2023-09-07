@@ -12,7 +12,7 @@ class HomeModule extends Module {
   void routes(r) {
     r.child(
       '/',
-      child: (context) => HomePage(),
+      child: (context) => const HomePage(),
     );
   }
 }

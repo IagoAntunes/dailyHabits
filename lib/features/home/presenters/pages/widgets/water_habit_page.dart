@@ -81,7 +81,7 @@ class WaterHabitComponent extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "${((controller.currentHabit.habitValue * 100) / controller.currentHabit.goalValue) > 0 ? ((controller.currentHabit.habitValue * 100) / controller.currentHabit.goalValue).ceil() : 0}%",
+                        "${((controller.currentHabit!.habitValue * 100) / controller.currentHabit!.goalValue) > 0 ? ((controller.currentHabit!.habitValue * 100) / controller.currentHabit!.goalValue).ceil() : 0}%",
                         style: AppTypography.card(),
                       ),
                     ),
@@ -96,16 +96,34 @@ class WaterHabitComponent extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 16),
                     child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(
-                            controller.currentHabit.description,
-                            style: AppTypography.card(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                controller.currentHabit!.description,
+                                style: AppTypography.card(),
+                              ),
+                              Text(
+                                "Meta: ${(controller.currentHabit!.goalValue / 1000).ceil()} L",
+                                style: AppTypography.title(color: Colors.black),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Meta: ${(controller.currentHabit.goalValue / 1000).ceil()} L",
-                            style: AppTypography.title(color: Colors.black),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Atual',
+                                style: AppTypography.card(),
+                              ),
+                              Text(
+                                " ${controller.currentHabit!.habitValue.ceil()} L",
+                                style: AppTypography.title(color: Colors.black),
+                              ),
+                            ],
                           ),
                         ],
                       ),
